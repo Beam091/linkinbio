@@ -177,6 +177,9 @@
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(-12vw, -10vh) scale(1.2); }
         }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="selection:bg-apple-blue selection:text-white">
@@ -369,7 +372,11 @@
                     </div>
                     <div class="relative z-10">
                         <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">GMAIL</p>
-                        <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-4 font-mono select-all">peerapatmatprasong@gmail.com</h3>
+                        <div class="overflow-x-auto max-w-full no-scrollbar py-1 mb-3">
+                            <h3 class="text-lg sm:text-2xl font-bold text-white tracking-tight font-mono select-all inline-block whitespace-nowrap">
+                                peerapatmatprasong@gmail.com
+                            </h3>
+                        </div>
                         <a href="mailto:peerapatmatprasong@gmail.com" class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
                             <span>ส่งอีเมล</span>
                             <i class="fa-solid fa-paper-plane text-[10px]"></i>
