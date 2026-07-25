@@ -210,10 +210,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <a href="#connect-section" class="apple-btn-primary text-xs px-4 py-1.5 inline-flex items-center gap-1.5">
+                <button onclick="smoothScrollTo('#connect-section', 1200)" class="apple-btn-primary text-xs px-4 py-1.5 inline-flex items-center gap-1.5 cursor-pointer">
                     <span>ติดต่อ</span>
                     <i class="fa-solid fa-arrow-down text-[10px]"></i>
-                </a>
+                </button>
             </div>
         </div>
     </header>
@@ -252,9 +252,6 @@
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                                 <span class="font-mono text-[11px] font-semibold text-emerald-300">ONLINE</span>
                             </div>
-                            <button onclick="toggleVideo()" title="เล่น/หยุดวิดีโอ" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center text-xs transition-colors">
-                                <i id="video-icon" class="fa-solid fa-pause"></i>
-                            </button>
                         </div>
 
                         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
@@ -263,19 +260,25 @@
                                 <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Phiraphat Matprasong</h2>
                             </div>
 
-                            <a href="#connect-section" class="apple-btn-primary text-sm px-7 py-3 inline-flex items-center justify-center gap-2.5 font-semibold">
+                            <button onclick="smoothScrollTo('#connect-section', 1200)" class="apple-btn-primary text-sm px-7 py-3 inline-flex items-center justify-center gap-2.5 font-semibold cursor-pointer">
                                 <span>ติดต่องาน</span>
                                 <i class="fa-solid fa-arrow-down text-xs"></i>
-                            </a>
+                            </button>
                         </div>
 
                     </div>
 
                 </div>
 
-                <div id="scroll-indicator" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-apple-gray text-xs font-normal transition-opacity duration-300 pointer-events-none">
-                    <i class="fa-solid fa-chevron-down text-xs animate-bounce text-apple-blue"></i>
-                </div>
+                <!-- LARGE PROMINENT SCROLL DOWN INDICATOR -->
+                <button onclick="smoothScrollTo('#connect-section', 1200)" id="scroll-indicator" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 transition-all duration-300 group cursor-pointer focus:outline-none">
+                    <div class="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white flex items-center gap-3 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:border-apple-blue">
+                        <span class="text-xs sm:text-sm font-semibold tracking-wide">เลื่อนลงเพื่อดูเพิ่มเติม</span>
+                        <div class="w-7 h-7 rounded-full bg-apple-blue flex items-center justify-center text-white text-xs animate-bounce shadow-md">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </button>
 
             </div>
         </section>
@@ -418,6 +421,33 @@
 
     <!-- JAVASCRIPT ENGINE & SPATIAL 3D INTERACTIONS -->
     <script>
+        // 0. CINEMATIC SMOOTH SCROLL ANIMATION ENGINE
+        function smoothScrollTo(targetSelector, duration = 1200) {
+            const target = document.querySelector(targetSelector);
+            if (!target) return;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 40;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
         // 1. LIVE USER DEVICE LOCAL TIME
         function updateClock() {
             const now = new Date();
@@ -678,28 +708,6 @@
             requestAnimationFrame(drawHeroParticles);
         }
         drawHeroParticles();
-
-        const video = document.getElementById('apple-video');
-        video.addEventListener('playing', () => hCanvas.style.display = 'none');
-        video.addEventListener('error', () => { hCanvas.style.display = 'block'; video.style.display = 'none'; });
-        video.addEventListener('waiting', () => hCanvas.style.display = 'block');
-
-        const videoIcon = document.getElementById('video-icon');
-        function toggleVideo() {
-            if (video.paused) {
-                const p = video.play();
-                if (p !== undefined) {
-                    p.then(() => {
-                        videoIcon.className = 'fa-solid fa-pause';
-                        showToast('เล่นวิดีโอ');
-                    }).catch(() => showToast('ไม่สามารถเล่นวิดีโอได้'));
-                }
-            } else {
-                video.pause();
-                videoIcon.className = 'fa-solid fa-play';
-                showToast('หยุดวิดีโอ');
-            }
-        }
 
         let toastTimer;
         function showToast(msg) {
