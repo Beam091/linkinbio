@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="description" content="Phiraphat Matprasong (@bexm_ix) - Personal Contact Portal">
+    <meta name="description" content="Phiraphat Matprasong (@bexm_ix) - Spatial Interactive Link in Bio">
     <meta property="og:title" content="Phiraphat Matprasong (@bexm_ix)">
-    <meta property="og:description" content="Phiraphat Matprasong Personal Contact Portal">
+    <meta property="og:description" content="Phiraphat Matprasong Personal Spatial Contact Portal">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Phiraphat Matprasong (@bexm_ix)">
     <meta name="theme-color" content="#000000">
+    <title>Phiraphat Matprasong (@bexm_ix)</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,7 +24,7 @@
                             'blue-hover': '#0077ed',
                             black: '#000000',
                             card: '#161618',
-                            'card-hover': '#222226',
+                            'card-hover': '#202024',
                             gray: '#86868b'
                         }
                     },
@@ -53,36 +54,50 @@
         }
 
         .apple-nav {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(200%) blur(24px);
+            -webkit-backdrop-filter: saturate(200%) blur(24px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .bento-card {
-            background-color: #161618;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        /* SPATIAL VISION PRO BENTO CARDS */
+        .spatial-card {
+            background: rgba(22, 22, 24, 0.85);
+            backdrop-filter: saturate(180%) blur(30px);
+            -webkit-backdrop-filter: saturate(180%) blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .bento-card:hover {
-            border-color: rgba(255, 255, 255, 0.25);
-            background-color: #202024;
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(0, 113, 227, 0.2);
+        .spatial-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.9), 0 0 40px -5px rgba(0, 113, 227, 0.25);
+        }
+
+        .card-sheen {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            transition: background 0.1s ease-out;
+            z-index: 2;
         }
 
         .apple-btn-primary {
-            background-color: #0071e3;
+            background: linear-gradient(135deg, #0071e3 0%, #005bb5 100%);
             color: #ffffff;
             border-radius: 9999px;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px rgba(0, 113, 227, 0.3);
         }
         .apple-btn-primary:hover {
-            background-color: #0077ed;
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(0, 113, 227, 0.4);
+            background: linear-gradient(135deg, #0077ed 0%, #0066cc 100%);
+            transform: scale(1.04);
+            box-shadow: 0 6px 24px rgba(0, 113, 227, 0.5);
         }
         .apple-btn-primary:active { transform: scale(0.96); }
 
@@ -91,11 +106,13 @@
             color: #ffffff;
             border-radius: 9999px;
             font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .apple-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.16);
-            transform: scale(1.03);
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: scale(1.04);
         }
         .apple-btn-secondary:active { transform: scale(0.96); }
 
@@ -108,7 +125,7 @@
         }
 
         .text-glow {
-            text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 50px rgba(255, 255, 255, 0.25);
         }
 
         @keyframes toastPop {
@@ -116,9 +133,61 @@
             100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
         }
         .toast-active { animation: toastPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* CUSTOM MOUSE FLUID CANVAS */
+        #fluid-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* VIBRANT AMBIENT AURORA ORBS */
+        .aurora-orb-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(236, 72, 153, 0.15) 50%, transparent 70%);
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat1 18s ease-in-out infinite alternate;
+        }
+        .aurora-orb-2 {
+            position: fixed;
+            bottom: -15%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.3) 0%, rgba(16, 185, 129, 0.15) 50%, transparent 70%);
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat2 22s ease-in-out infinite alternate;
+        }
+
+        @keyframes orbFloat1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10vw, 15vh) scale(1.15); }
+        }
+        @keyframes orbFloat2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-12vw, -10vh) scale(1.2); }
+        }
     </style>
 </head>
 <body class="selection:bg-apple-blue selection:text-white">
+
+    <!-- VIBRANT AMBIENT AURORA ORBS -->
+    <div class="aurora-orb-1"></div>
+    <div class="aurora-orb-2"></div>
+
+    <!-- FULL-BLEED METEOR SHOWER & FLUID BACKGROUND CANVAS -->
+    <canvas id="meteor-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-80"></canvas>
+    <canvas id="fluid-canvas"></canvas>
 
     <!-- APPLE GLOBAL NAV BAR -->
     <header class="fixed top-0 z-40 w-full apple-nav">
@@ -150,190 +219,196 @@
     </header>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <main>
-        <!-- SECTION 1 & 2: HERO STAGE -->
+    <main class="relative z-10">
+        
+        <!-- SECTION 1 & 2: HERO SPATIAL STAGE -->
         <section class="relative min-h-[200vh] bg-black">
-        <div class="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden stage-viewport z-10">
-            
-            <div id="apple-headline" class="text-center absolute top-28 left-1/2 -translate-x-1/2 w-full px-6 z-30 transition-all duration-500 pointer-events-none">
-                <h1 class="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter text-white text-glow mb-1">
-                    PHIRAPHAT
-                </h1>
-                <p class="text-sm sm:text-base text-apple-gray font-normal tracking-wider">
-                    @bexm_ix
-                </p>
-            </div>
-
-            <!-- DISPLAY FRAME -->
-            <div id="apple-display" class="hero-display-card relative w-[92vw] max-w-6xl h-[68vh] sm:h-[75vh] bg-[#161618] rounded-[36px] sm:rounded-[52px] overflow-hidden border border-white/10 z-20 mt-16 sm:mt-20">
+            <div class="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden stage-viewport z-10">
                 
-                <div class="absolute inset-0 z-0 bg-black" aria-hidden="true">
-                    <video id="apple-video" autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover opacity-70 mix-blend-screen filter saturate-150">
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-fast-lines-of-light-31481-large.mp4" type="video/mp4">
-                    </video>
-                    <canvas id="fallback-canvas" class="absolute inset-0 w-full h-full"></canvas>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#161618] via-transparent to-[#161618]/60"></div>
+                <div id="apple-headline" class="text-center absolute top-28 left-1/2 -translate-x-1/2 w-full px-6 z-30 transition-all duration-500 pointer-events-none">
+                    <h1 class="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter text-white text-glow mb-1">
+                        PHIRAPHAT
+                    </h1>
+                    <p class="text-sm sm:text-base text-apple-gray font-normal tracking-wider">
+                        @bexm_ix
+                    </p>
                 </div>
 
-                <div class="absolute inset-0 z-10 flex flex-col justify-between p-6 sm:p-14 pointer-events-auto">
+                <!-- DISPLAY FRAME -->
+                <div id="apple-display" class="hero-display-card relative w-[92vw] max-w-6xl h-[68vh] sm:h-[75vh] bg-[#161618] rounded-[36px] sm:rounded-[52px] overflow-hidden border border-white/10 z-20 mt-16 sm:mt-20">
                     
-                    <div class="flex items-center justify-between">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-white">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span class="font-mono text-[11px] font-semibold text-emerald-300">ONLINE</span>
-                        </div>
-                        <button onclick="toggleVideo()" title="เล่น/หยุดวิดีโอ" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center text-xs transition-colors">
-                            <i id="video-icon" class="fa-solid fa-pause"></i>
-                        </button>
+                    <div class="absolute inset-0 z-0 bg-black" aria-hidden="true">
+                        <video id="apple-video" autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover opacity-70 mix-blend-screen filter saturate-150">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-fast-lines-of-light-31481-large.mp4" type="video/mp4">
+                        </video>
+                        <canvas id="fallback-canvas" class="absolute inset-0 w-full h-full"></canvas>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#161618] via-transparent to-[#161618]/60"></div>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-                        <div>
-                            <span class="text-xs font-bold font-mono text-apple-blue tracking-widest uppercase">@bexm_ix</span>
-                            <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Phiraphat Matprasong</h2>
+                    <div class="absolute inset-0 z-10 flex flex-col justify-between p-6 sm:p-14 pointer-events-auto">
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-white">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span class="font-mono text-[11px] font-semibold text-emerald-300">ONLINE</span>
+                            </div>
+                            <button onclick="toggleVideo()" title="เล่น/หยุดวิดีโอ" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center text-xs transition-colors">
+                                <i id="video-icon" class="fa-solid fa-pause"></i>
+                            </button>
                         </div>
 
-                        <a href="#connect-section" class="apple-btn-primary text-sm px-7 py-3 inline-flex items-center justify-center gap-2.5 font-semibold">
-                            <span>ติดต่องาน</span>
-                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                            <div>
+                                <span class="text-xs font-bold font-mono text-apple-blue tracking-widest uppercase">@bexm_ix</span>
+                                <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Phiraphat Matprasong</h2>
+                            </div>
+
+                            <a href="#connect-section" class="apple-btn-primary text-sm px-7 py-3 inline-flex items-center justify-center gap-2.5 font-semibold">
+                                <span>ติดต่องาน</span>
+                                <i class="fa-solid fa-arrow-down text-xs"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="scroll-indicator" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-apple-gray text-xs font-normal transition-opacity duration-300 pointer-events-none">
+                    <i class="fa-solid fa-chevron-down text-xs animate-bounce text-apple-blue"></i>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: SPATIAL BENTO GRID WITH 3D TILT & SHEEN -->
+        <section id="connect-section" class="relative z-20 py-24 px-6 max-w-6xl mx-auto pb-36">
+            
+            <div class="mb-12">
+                <h2 class="text-4xl sm:text-6xl font-black text-white tracking-tighter">
+                    ช่องทางติดต่อ
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- CARD 1: INSTAGRAM -->
+                <div class="spatial-card bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
+                    <div class="card-sheen"></div>
+                    <div class="flex items-start justify-between relative z-10">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <span class="text-xs font-mono font-semibold text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full border border-pink-500/20">@bexm_ix</span>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">INSTAGRAM</p>
+                        <h3 class="text-2xl font-bold text-white tracking-tight mb-4">bexm_ix</h3>
+                        <a href="https://www.instagram.com/bexm_ix?igsh=MXFibnhra3BjbjFvZg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" 
+                           class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
+                            <span>ไปที่ Instagram</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
                     </div>
-
                 </div>
 
-            </div>
-
-            <div id="scroll-indicator" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-apple-gray text-xs font-normal transition-opacity duration-300 pointer-events-none">
-                <i class="fa-solid fa-chevron-down text-xs animate-bounce text-apple-blue"></i>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 3: APPLE BENTO GRID -->
-    <section id="connect-section" class="relative z-20 py-24 px-6 max-w-6xl mx-auto pb-36">
-        
-        <div class="mb-12">
-            <h2 class="text-4xl sm:text-6xl font-black text-white tracking-tighter">
-                ช่องทางติดต่อ
-            </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <!-- CARD 1: INSTAGRAM -->
-            <div class="bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
-                <div class="flex items-start justify-between">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-lg">
-                        <i class="fa-brands fa-instagram"></i>
+                <!-- CARD 2: FACEBOOK -->
+                <div class="spatial-card bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
+                    <div class="card-sheen"></div>
+                    <div class="flex items-start justify-between relative z-10">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </div>
+                        <span class="text-xs font-mono font-semibold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Profile</span>
                     </div>
-                    <span class="text-xs font-mono font-semibold text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full border border-pink-500/20">@bexm_ix</span>
-                </div>
-                <div>
-                    <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">INSTAGRAM</p>
-                    <h3 class="text-2xl font-bold text-white tracking-tight mb-4">bexm_ix</h3>
-                    <a href="https://www.instagram.com/bexm_ix?igsh=MXFibnhra3BjbjFvZg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" 
-                       class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
-                        <span>ไปที่ Instagram</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- CARD 2: FACEBOOK -->
-            <div class="bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
-                <div class="flex items-start justify-between">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-2xl shadow-lg">
-                        <i class="fa-brands fa-facebook-f"></i>
+                    <div class="relative z-10">
+                        <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">FACEBOOK</p>
+                        <h3 class="text-2xl font-bold text-white tracking-tight mb-4">Phiraphat Matprasong</h3>
+                        <a href="https://www.facebook.com/share/1BNe4vbzox/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+                           class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
+                            <span>ไปที่ Facebook</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
                     </div>
-                    <span class="text-xs font-mono font-semibold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Profile</span>
                 </div>
-                <div>
-                    <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">FACEBOOK</p>
-                    <h3 class="text-2xl font-bold text-white tracking-tight mb-4">Phiraphat Matprasong</h3>
-                    <a href="https://www.facebook.com/share/1BNe4vbzox/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
-                       class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
-                        <span>ไปที่ Facebook</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
 
-            <!-- CARD 3: LINE -->
-            <div class="bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
-                <div class="flex items-start justify-between">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-500 flex items-center justify-center text-white text-2xl shadow-lg">
-                        <i class="fa-brands fa-line"></i>
+                <!-- CARD 3: LINE -->
+                <div class="spatial-card bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
+                    <div class="card-sheen"></div>
+                    <div class="flex items-start justify-between relative z-10">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500 flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fa-brands fa-line"></i>
+                        </div>
+                        <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Line</span>
                     </div>
-                    <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Line</span>
-                </div>
-                <div>
-                    <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">LINE</p>
-                    <h3 class="text-2xl font-bold text-white tracking-tight mb-4">เพิ่มเพื่อน</h3>
-                    <a href="https://line.me/ti/p/Ps4OwloSoe" target="_blank" rel="noopener noreferrer" 
-                       class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
-                        <span>ทัก LINE</span>
-                        <i class="fa-solid fa-user-plus text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- CARD 4: EMAIL -->
-            <div class="bento-card p-8 flex flex-col justify-between min-h-[224px] h-full md:col-span-2 lg:col-span-2 group">
-                <div class="flex items-start justify-between">
-                    <div class="w-12 h-12 rounded-2xl bg-rose-600 flex items-center justify-center text-white text-2xl shadow-lg">
-                        <i class="fa-solid fa-envelope"></i>
+                    <div class="relative z-10">
+                        <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">LINE</p>
+                        <h3 class="text-2xl font-bold text-white tracking-tight mb-4">เพิ่มเพื่อน</h3>
+                        <a href="https://line.me/ti/p/Ps4OwloSoe" target="_blank" rel="noopener noreferrer" 
+                           class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
+                            <span>ทัก LINE</span>
+                            <i class="fa-solid fa-user-plus text-[10px]"></i>
+                        </a>
                     </div>
-                    <button onclick="copyText('peerapatmatprasong@gmail.com', 'คัดลอกอีเมลแล้ว')" 
-                            class="apple-btn-secondary text-xs px-4 py-2 inline-flex items-center gap-1.5">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>คัดลอก</span>
-                    </button>
                 </div>
-                <div>
-                    <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">GMAIL</p>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-4 font-mono select-all">peerapatmatprasong@gmail.com</h3>
-                    <a href="mailto:peerapatmatprasong@gmail.com" class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
-                        <span>ส่งอีเมล</span>
-                        <i class="fa-solid fa-paper-plane text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
 
-            <!-- CARD 5: PHONE -->
-            <div class="bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
-                <div class="flex items-start justify-between">
-                    <div class="w-12 h-12 rounded-2xl bg-amber-500 flex items-center justify-center text-white text-2xl shadow-lg">
-                        <i class="fa-solid fa-phone"></i>
+                <!-- CARD 4: EMAIL -->
+                <div class="spatial-card bento-card p-8 flex flex-col justify-between min-h-[224px] h-full md:col-span-2 lg:col-span-2 group">
+                    <div class="card-sheen"></div>
+                    <div class="flex items-start justify-between relative z-10">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-600 flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <button onclick="copyText('peerapatmatprasong@gmail.com', 'คัดลอกอีเมลแล้ว')" 
+                                class="apple-btn-secondary text-xs px-4 py-2 inline-flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>คัดลอก</span>
+                        </button>
                     </div>
-                    <button onclick="copyText('0983452076', 'คัดลอกเบอร์แล้ว')" 
-                            class="apple-btn-secondary text-xs px-4 py-2 inline-flex items-center gap-1.5">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>คัดลอก</span>
-                    </button>
+                    <div class="relative z-10">
+                        <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">GMAIL</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-4 font-mono select-all">peerapatmatprasong@gmail.com</h3>
+                        <a href="mailto:peerapatmatprasong@gmail.com" class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
+                            <span>ส่งอีเมล</span>
+                            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">MOBILE PHONE</p>
-                    <h3 class="text-2xl font-bold text-amber-400 font-mono tracking-tight mb-4">098-345-2076</h3>
-                    <a href="tel:0983452076" class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
-                        <span>โทรออก</span>
-                        <i class="fa-solid fa-phone-flip text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
 
-        </div>
-    </section>
+                <!-- CARD 5: PHONE -->
+                <div class="spatial-card bento-card p-8 flex flex-col justify-between min-h-[224px] h-full group">
+                    <div class="card-sheen"></div>
+                    <div class="flex items-start justify-between relative z-10">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500 flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <button onclick="copyText('0983452076', 'คัดลอกเบอร์แล้ว')" 
+                                class="apple-btn-secondary text-xs px-4 py-2 inline-flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>คัดลอก</span>
+                        </button>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-xs text-apple-gray font-mono uppercase tracking-wider mb-1">MOBILE PHONE</p>
+                        <h3 class="text-2xl font-bold text-amber-400 font-mono tracking-tight mb-4">098-345-2076</h3>
+                        <a href="tel:0983452076" class="apple-btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2">
+                            <span>โทรออก</span>
+                            <i class="fa-solid fa-phone-flip text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-white/10 py-8 px-6 text-center text-xs text-apple-gray">
+    <footer class="border-t border-white/10 py-8 px-6 text-center text-xs text-apple-gray relative z-20">
         <p>© 2026 Phiraphat Matprasong (@bexm_ix)</p>
     </footer>
 
     <!-- TOAST NOTIFICATION -->
     <div id="toast-banner" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 hidden pointer-events-none">
-        <div class="bg-[#161618] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-white/15">
+        <div class="bg-[#161618]/90 backdrop-blur-xl text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-white/15">
             <div class="w-5 h-5 rounded-full bg-apple-blue flex items-center justify-center text-[10px]">
                 <i class="fa-solid fa-check"></i>
             </div>
@@ -341,17 +416,19 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT ANIMATION ENGINE -->
+    <!-- JAVASCRIPT ENGINE & SPATIAL 3D INTERACTIONS -->
     <script>
+        // 1. LIVE USER DEVICE LOCAL TIME
         function updateClock() {
             const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-GB', { timeZone: 'Asia/Bangkok' });
+            const timeStr = now.toLocaleTimeString('en-GB'); // Renders exact local time of user's device
             const clockEl = document.getElementById('live-time');
             if (clockEl) clockEl.textContent = timeStr;
         }
         setInterval(updateClock, 1000);
         updateClock();
 
+        // 2. HERO DISPLAY SCROLL DRIVEN 3D REVEAL
         const appleDisplay = document.getElementById('apple-display');
         const appleHeadline = document.getElementById('apple-headline');
         const scrollIndicator = document.getElementById('scroll-indicator');
@@ -391,53 +468,221 @@
         }
         requestAnimationFrame(renderFrame);
 
-        // Fallback Canvas
-        const canvas = document.getElementById('fallback-canvas');
+        // 3. CURSOR-REACTIVE 3D BENTO TILT PHYSICS & CUSTOM SHEEN
+        const cardSheenColors = {
+            'INSTAGRAM': 'rgba(236, 72, 153, 0.25)',
+            'FACEBOOK': 'rgba(59, 130, 246, 0.25)',
+            'LINE': 'rgba(16, 185, 129, 0.25)',
+            'GMAIL': 'rgba(244, 63, 94, 0.25)',
+            'MOBILE PHONE': 'rgba(245, 158, 11, 0.25)'
+        };
+
+        document.querySelectorAll('.spatial-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 12;
+                const rotateY = (centerX - x) / 12;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                
+                const sheen = card.querySelector('.card-sheen');
+                const labelText = card.querySelector('p')?.textContent?.trim() || '';
+                const sheenColor = cardSheenColors[labelText] || 'rgba(255, 255, 255, 0.15)';
+                if (sheen) {
+                    sheen.style.background = `radial-gradient(circle at ${x}px ${y}px, ${sheenColor} 0%, transparent 65%)`;
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                const sheen = card.querySelector('.card-sheen');
+                if (sheen) sheen.style.background = 'transparent';
+            });
+        });
+
+        // 4. DYNAMIC SPECTRUM INTERACTIVE FLUID MESH CANVAS
+        const fCanvas = document.getElementById('fluid-canvas');
+        const fCtx = fCanvas.getContext('2d');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let hueAngle = 0;
+
+        function resizeFluid() {
+            fCanvas.width = window.innerWidth;
+            fCanvas.height = window.innerHeight;
+        }
+        resizeFluid();
+        window.addEventListener('resize', resizeFluid, { passive: true });
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; }, { passive: true });
+
+        function drawFluidMesh() {
+            fCtx.clearRect(0, 0, fCanvas.width, fCanvas.height);
+            hueAngle = (hueAngle + 0.3) % 360;
+            
+            const colorPrimary = `hsla(${hueAngle}, 90%, 55%, 0.18)`;
+            const colorSecondary = `hsla(${(hueAngle + 90) % 360}, 85%, 50%, 0.08)`;
+
+            const grad = fCtx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 450);
+            grad.addColorStop(0, colorPrimary);
+            grad.addColorStop(0.5, colorSecondary);
+            grad.addColorStop(1, 'transparent');
+            fCtx.fillStyle = grad;
+            fCtx.fillRect(0, 0, fCanvas.width, fCanvas.height);
+            requestAnimationFrame(drawFluidMesh);
+        }
+        drawFluidMesh();
+
+        // 5. SITE-WIDE FULL-BLEED METEOR SHOWER & STARFIELD CANVAS ENGINE
+        const canvas = document.getElementById('meteor-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let stars = [];
+        let meteors = [];
 
         function resizeCanvas() {
-            canvas.width = appleDisplay.clientWidth || window.innerWidth;
-            canvas.height = appleDisplay.clientHeight || window.innerHeight;
-            particles = [];
-            for (let i = 0; i < 40; i++) {
-                particles.push({
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Generate ambient twinkling starfield (120 stars across entire site)
+            stars = [];
+            for (let i = 0; i < 120; i++) {
+                stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    radius: Math.random() * 2 + 0.5,
-                    speedY: Math.random() * 0.5 + 0.1,
-                    alpha: Math.random() * 0.4 + 0.1
+                    radius: Math.random() * 1.3 + 0.3,
+                    alpha: Math.random() * 0.7 + 0.2,
+                    twinkleSpeed: Math.random() * 0.02 + 0.005
                 });
             }
+
+            // Generate initial shooting stars
+            meteors = [];
+            for (let i = 0; i < 5; i++) spawnMeteor();
         }
+
+        function spawnMeteor() {
+            meteors.push({
+                x: Math.random() * (canvas.width * 1.3) - canvas.width * 0.3,
+                y: Math.random() * (canvas.height * 0.5) - 100,
+                length: Math.random() * 120 + 70,
+                speed: Math.random() * 9 + 5,
+                angle: Math.PI / 4 + (Math.random() * 0.1 - 0.05), // 45-degree meteor trail
+                opacity: Math.random() * 0.85 + 0.25,
+                width: Math.random() * 1.8 + 1
+            });
+        }
+
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas, { passive: true });
 
-        function drawParticles() {
-            if (canvas.style.display !== 'none') {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#0071e3';
-                particles.forEach(p => {
-                    ctx.globalAlpha = p.alpha;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                    p.y -= p.speedY;
-                    if (p.y < -4) {
-                        p.y = canvas.height + 4;
-                        p.x = Math.random() * canvas.width;
-                    }
-                });
-                ctx.globalAlpha = 1;
+        function drawMeteorShower() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw twinkling background stars across entire page
+            stars.forEach(star => {
+                star.alpha += star.twinkleSpeed;
+                if (star.alpha > 0.9 || star.alpha < 0.2) star.twinkleSpeed = -star.twinkleSpeed;
+                ctx.globalAlpha = star.alpha;
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw Shooting Stars / Meteors across whole site
+            for (let i = meteors.length - 1; i >= 0; i--) {
+                const m = meteors[i];
+                const tailX = m.x - Math.cos(m.angle) * m.length;
+                const tailY = m.y - Math.sin(m.angle) * m.length;
+
+                const gradient = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${m.opacity})`);
+                gradient.addColorStop(0.2, `rgba(0, 113, 227, ${m.opacity * 0.9})`);
+                gradient.addColorStop(0.6, `rgba(168, 85, 247, ${m.opacity * 0.5})`);
+                gradient.addColorStop(1, 'transparent');
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = m.width;
+                ctx.lineCap = 'round';
+
+                ctx.beginPath();
+                ctx.moveTo(m.x, m.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.stroke();
+
+                // Meteor head glow
+                ctx.fillStyle = `rgba(255, 255, 255, ${m.opacity})`;
+                ctx.beginPath();
+                ctx.arc(m.x, m.y, m.width * 1.4, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Move meteor along trajectory
+                m.x += Math.cos(m.angle) * m.speed;
+                m.y += Math.sin(m.angle) * m.speed;
+
+                // Recycle when out of view
+                if (m.x > canvas.width + m.length || m.y > canvas.height + m.length) {
+                    meteors.splice(i, 1);
+                    if (Math.random() < 0.75) spawnMeteor();
+                }
             }
-            requestAnimationFrame(drawParticles);
+
+            // Periodically spawn new shooting stars
+            if (meteors.length < 6 && Math.random() < 0.04) {
+                spawnMeteor();
+            }
+
+            ctx.globalAlpha = 1;
+            requestAnimationFrame(drawMeteorShower);
         }
-        drawParticles();
+        drawMeteorShower();
+
+        // 6. HERO DISPLAY FRAME PARTICLES (INSIDE BOX)
+        const hCanvas = document.getElementById('fallback-canvas');
+        const hCtx = hCanvas.getContext('2d');
+        let hParticles = [];
+
+        function resizeHeroCanvas() {
+            hCanvas.width = appleDisplay.clientWidth || window.innerWidth;
+            hCanvas.height = appleDisplay.clientHeight || window.innerHeight;
+            hParticles = [];
+            for (let i = 0; i < 45; i++) {
+                hParticles.push({
+                    x: Math.random() * hCanvas.width,
+                    y: Math.random() * hCanvas.height,
+                    radius: Math.random() * 2 + 0.6,
+                    speedY: Math.random() * 0.6 + 0.15,
+                    alpha: Math.random() * 0.5 + 0.15
+                });
+            }
+        }
+        resizeHeroCanvas();
+        window.addEventListener('resize', resizeHeroCanvas, { passive: true });
+
+        function drawHeroParticles() {
+            hCtx.clearRect(0, 0, hCanvas.width, hCanvas.height);
+            hCtx.fillStyle = '#0071e3';
+            hParticles.forEach(p => {
+                hCtx.globalAlpha = p.alpha;
+                hCtx.beginPath();
+                hCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                hCtx.fill();
+                p.y -= p.speedY;
+                if (p.y < -4) {
+                    p.y = hCanvas.height + 4;
+                    p.x = Math.random() * hCanvas.width;
+                }
+            });
+            hCtx.globalAlpha = 1;
+            requestAnimationFrame(drawHeroParticles);
+        }
+        drawHeroParticles();
 
         const video = document.getElementById('apple-video');
-        video.addEventListener('playing', () => canvas.style.display = 'none');
-        video.addEventListener('error', () => { canvas.style.display = 'block'; video.style.display = 'none'; });
-        video.addEventListener('waiting', () => canvas.style.display = 'block');
+        video.addEventListener('playing', () => hCanvas.style.display = 'none');
+        video.addEventListener('error', () => { hCanvas.style.display = 'block'; video.style.display = 'none'; });
+        video.addEventListener('waiting', () => hCanvas.style.display = 'block');
 
         const videoIcon = document.getElementById('video-icon');
         function toggleVideo() {
